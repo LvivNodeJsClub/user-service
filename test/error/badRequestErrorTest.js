@@ -1,5 +1,3 @@
-require('rootpath')();
-
 const expect     = require('chai').expect;
 const HttpStatus = require('http-status-codes');
 

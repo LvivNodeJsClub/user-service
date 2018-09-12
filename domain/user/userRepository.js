@@ -1,4 +1,5 @@
 const USERS = 'Users';
+const FIELD = ['id', 'name', 'login', 'email'];
 
 class UserRepository {
 
@@ -7,23 +8,27 @@ class UserRepository {
     }
 
     getAll() {
-        return this.knex.select('*').from(USERS);
+        return this.knex.select(FIELD).from(USERS);
     }
 
     get(id) {
-        return this.knex.first('*').from(USERS).where({id});
+        return this.knex.first(FIELD).from(USERS).where({id});
     }
 
     create(user) {
-        return this.knex.insert(user, '*').into(USERS);
+        return this.knex.insert(user, FIELD).into(USERS);
     }
 
     update(id, user) {
-        return this.knex.update(user, '*').into(USERS).where({id});
+        return this.knex.update(user, FIELD).into(USERS).where({id});
     }
 
     delete(id) {
         return this.knex.delete().from(USERS).where({id: +id});
+    }
+
+    deleteAll() {
+        return this.knex.delete().from(USERS);
     }
 }
 

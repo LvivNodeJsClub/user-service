@@ -21,6 +21,7 @@ class UserService {
 
     async create(user) {
         delete user.id;
+        delete user.confirmPassword;
         return this.userRepository.create(user);
     }
 
@@ -31,6 +32,7 @@ class UserService {
         }
 
         delete user.id;
+        delete user.confirmPassword;
         return this.userRepository.update(id, user);
     }
 

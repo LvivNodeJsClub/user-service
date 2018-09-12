@@ -1,8 +1,13 @@
 require('rootpath')();
-const setting = require('setting');
 
-const application = require('application');
+const knex = require('database/knex');
 
-application.listen(setting.PORT, () => {
-    console.log(`Example app listening on port ${setting.PORT}!`);
+knex.migrate.latest()
+.then(function() {
+    console.log('Migration done!');
+
+    require('runner');
+})
+.catch(function() {
+    console.error('Migration failed!');
 });

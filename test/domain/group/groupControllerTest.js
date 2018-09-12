@@ -7,23 +7,20 @@ chai.use(chaiAsPromised);
 
 const HttpStatus = require('http-status-codes');
 
-const NotFoundError  = require('error/notFoundError');
-const UserService    = require('domain/user/userService');
-const UserController = require('domain/user/userController');
+const NotFoundError   = require('error/notFoundError');
+const GroupService    = require('domain/group/groupService');
+const GroupController = require('domain/group/groupController');
 
-describe('UserController', function() {
+describe('GroupController', function() {
 
     let sandbox;
 
-    let userController;
+    let groupController;
 
     before(async function() {
-        const userService = new UserService();
-        userController    = new UserController(userService);
-    });
-
-    beforeEach(function() {
-        sandbox = sinon.createSandbox();
+        const groupService = new GroupService();
+        groupController    = new GroupController(groupService);
+        sandbox            = sinon.createSandbox();
     });
 
     afterEach(function() {
@@ -32,8 +29,8 @@ describe('UserController', function() {
 
     describe('getAll', function() {
 
-        it('should return all users', async function() {
-            const getAllStub = sandbox.stub(UserService.prototype, 'getAll').callsFake(() => Promise.resolve([{name: 'User name'}]));
+        it('should return all groups', async function() {
+            const getAllStub = sandbox.stub(GroupService.prototype, 'getAll').callsFake(() => Promise.resolve([{name: 'Group name'}]));
 
             const request  = {};
             const response = {
@@ -41,7 +38,7 @@ describe('UserController', function() {
                 json:   sinon.fake(() => response),
             };
 
-            await userController.getAll(request, response);
+            await groupController.getAll(request, response);
 
             expect(getAllStub.calledOnce).equal(true);
 
@@ -49,14 +46,14 @@ describe('UserController', function() {
             expect(response.status.calledWith(HttpStatus.OK)).equal(true);
 
             expect(response.json.calledOnce).equal(true);
-            expect(response.json.calledWith([{name: 'User name'}])).equal(true);
+            expect(response.json.calledWith([{name: 'Group name'}])).equal(true);
         });
     });
 
     describe('get', function() {
 
-        it('should return user', async function() {
-            const getStub = sandbox.stub(UserService.prototype, 'get').callsFake(() => Promise.resolve({name: 'User name'}));
+        it('should return group', async function() {
+            const getStub = sandbox.stub(GroupService.prototype, 'get').callsFake(() => Promise.resolve({name: 'Group name'}));
 
             const request  = {
                 params: {
@@ -68,7 +65,7 @@ describe('UserController', function() {
                 json:   sinon.fake(() => response),
             };
 
-            await userController.get(request, response);
+            await groupController.get(request, response);
 
             expect(getStub.calledOnce).equal(true);
             expect(getStub.calledWith(1)).equal(true);
@@ -77,12 +74,12 @@ describe('UserController', function() {
             expect(response.status.calledWith(HttpStatus.OK)).equal(true);
 
             expect(response.json.calledOnce).equal(true);
-            expect(response.json.calledWith({name: 'User name'})).equal(true);
+            expect(response.json.calledWith({name: 'Group name'})).equal(true);
         });
 
-        it('should not return not existing user', async function() {
-            const getStub = sandbox.stub(UserService.prototype, 'get').callsFake(() => {
-                throw new NotFoundError(`No user 1`);
+        it('should not return not existing group', async function() {
+            const getStub = sandbox.stub(GroupService.prototype, 'get').callsFake(() => {
+                throw new NotFoundError(`No group 1`);
             });
 
             const request  = {
@@ -95,8 +92,8 @@ describe('UserController', function() {
                 json:   sinon.fake(() => response),
             };
 
-            const getPromise = userController.get(request, response);
-            await expect(getPromise).rejectedWith('No user 1');
+            const getPromise = groupController.get(request, response);
+            await expect(getPromise).rejectedWith('No group 1');
 
             expect(getStub.calledOnce).equal(true);
             expect(getStub.calledWith(1)).equal(true);
@@ -109,34 +106,34 @@ describe('UserController', function() {
 
     describe('create', function() {
 
-        it('should create user', async function() {
-            const createStub = sandbox.stub(UserService.prototype, 'create').callsFake(() => Promise.resolve({name: 'User name'}));
+        it('should create group', async function() {
+            const createStub = sandbox.stub(GroupService.prototype, 'create').callsFake(() => Promise.resolve({name: 'Group name'}));
 
             const request  = {
-                body: {name: 'User name'}
+                body: {name: 'Group name'}
             };
             const response = {
                 status: sinon.fake(() => response),
                 json:   sinon.fake(() => response),
             };
 
-            await userController.create(request, response);
+            await groupController.create(request, response);
 
             expect(createStub.calledOnce).equal(true);
-            expect(createStub.calledWith({name: 'User name'})).equal(true);
+            expect(createStub.calledWith({name: 'Group name'})).equal(true);
 
             expect(response.status.calledOnce).equal(true);
             expect(response.status.calledWith(HttpStatus.CREATED)).equal(true);
 
             expect(response.json.calledOnce).equal(true);
-            expect(response.json.calledWith({name: 'User name'})).equal(true);
+            expect(response.json.calledWith({name: 'Group name'})).equal(true);
         });
     });
 
     describe('update', function() {
 
-        it('should update user', async function() {
-            const updateStub = sandbox.stub(UserService.prototype, 'update').callsFake(() => Promise.resolve({name: 'New name'}));
+        it('should update group', async function() {
+            const updateStub = sandbox.stub(GroupService.prototype, 'update').callsFake(() => Promise.resolve({name: 'New name'}));
 
             const request  = {
                 params: {
@@ -149,7 +146,7 @@ describe('UserController', function() {
                 json:   sinon.fake(() => response),
             };
 
-            await userController.update(request, response);
+            await groupController.update(request, response);
 
             expect(updateStub.calledOnce).equal(true);
             expect(updateStub.calledWith(1, {name: 'New name'})).equal(true);
@@ -163,8 +160,8 @@ describe('UserController', function() {
 
     describe('delete', function() {
 
-        it('should delete user', async function() {
-            const deleteStub = sandbox.stub(UserService.prototype, 'delete').callsFake(() => Promise.resolve(undefined));
+        it('should delete group', async function() {
+            const deleteStub = sandbox.stub(GroupService.prototype, 'delete').callsFake(() => Promise.resolve(undefined));
             const request    = {
                 params: {
                     id: 1
@@ -176,7 +173,7 @@ describe('UserController', function() {
                 json:       sinon.fake(() => response),
             };
 
-            await userController.delete(request, response);
+            await groupController.delete(request, response);
 
             expect(deleteStub.calledOnce).equal(true);
             expect(deleteStub.calledWith(1)).equal(true);

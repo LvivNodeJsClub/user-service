@@ -1,0 +1,1296 @@
+{
+	"info": {
+		"_postman_id": "a02a394f-bca3-4308-8b58-fd620b77bd42",
+		"name": "user-service",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Groups",
+			"item": [
+				{
+					"name": "Create",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "6f604ef1-f2cf-4263-b4be-f275d8ce55e6",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"Status code is 201\", function () {",
+									"    pm.response.to.have.status(201);",
+									"});"
+								]
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "c86ea6fd-2873-431c-b38f-7f14a2b69829",
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\": \"Group name\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:3000/groups",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"groups"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create group with existing name",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "b5315287-6130-45df-9165-749397db3c00",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"Status code is 409\", function () {",
+									"    pm.response.to.have.status(409);",
+									"});",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\": \"Group name\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:3000/groups",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"groups"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create admin",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "94478203-3081-4ed8-9869-4b17982263ba",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"Status code is 201\", function () {",
+									"    pm.response.to.have.status(201);",
+									"});",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\": \"Admins\",\n\t\"admin\": true\n}"
+						},
+						"url": {
+							"raw": "http://localhost:3000/groups",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"groups"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create without name",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "10a3bbb1-a5ce-4340-b39f-35a2be103952",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"Status code is 400\", function () {",
+									"    pm.response.to.have.status(400);",
+									"});",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"full-name\": \"Ivan\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:3000/groups",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"groups"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create with short name",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "3518de74-5d64-4f08-9c6c-4822909f283e",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"Status code is 400\", function () {",
+									"    pm.response.to.have.status(400);",
+									"});",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\": \"Gr\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:3000/groups",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"groups"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get user by id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "0f66a7bc-aa61-42bc-82ca-56492b5ae9e1",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									""
+								]
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "6487e392-0604-46ca-a0f6-211e2d108365",
+								"type": "text/javascript",
+								"exec": [
+									"const createRequest = {",
+									"    url: 'http://localhost:3000/groups/',",
+									"    method: 'POST',",
+									"    header: 'Content-Type:application/json',",
+									"    body: {",
+									"        mode: 'application/json',",
+									"        raw: JSON.stringify({",
+									"             name: \"My group to get\"",
+									"        })",
+									"    }",
+									"};",
+									"pm.sendRequest(createRequest, function (err, response) {",
+									"    console.log(response);",
+									"    const [data] = response.json();",
+									"    console.log(data.id);",
+									"    pm.environment.set('groupid', data.id);",
+									"});"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://localhost:3000/groups/{{groupid}}",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"groups",
+								"{{groupid}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get user by not exist id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "4a0a2c5b-02f6-4b85-8e17-e25d193b13dc",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"Status code is 404\", function () {",
+									"    pm.response.to.have.status(404);",
+									"});",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://localhost:3000/groups/100500",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"groups",
+								"100500"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "4bdb3bc1-eae6-43b9-93c3-19c20cebeed2",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									""
+								]
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "8c5c0386-e523-47a9-a239-b2618f101b04",
+								"type": "text/javascript",
+								"exec": [
+									"const createRequest = {",
+									"    url: 'http://localhost:3000/groups/',",
+									"    method: 'POST',",
+									"    header: 'Content-Type:application/json',",
+									"    body: {",
+									"        mode: 'application/json',",
+									"        raw: JSON.stringify({",
+									"             name: \"My group to update\"",
+									"        })",
+									"    }",
+									"};",
+									"pm.sendRequest(createRequest, function (err, response) {",
+									"    console.log(response);",
+									"    const [data] = response.json();",
+									"    console.log(data.id);",
+									"    pm.environment.set('groupid', data.id);",
+									"});"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\": \"Petro\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:3000/groups/{{groupid}}",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"groups",
+								"{{groupid}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get all groups",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "19e75e23-b6e4-4d87-9aa8-fc3c30c98ad5",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://localhost:3000/groups",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"groups"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "4c6ba94e-e087-4300-bbf6-77a3f70c9894",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"Status code is 204\", function () {",
+									"    pm.response.to.have.status(204);",
+									"});",
+									""
+								]
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "cef5ad26-b7d8-4725-b7c1-06b5825be7bb",
+								"type": "text/javascript",
+								"exec": [
+									"const createRequest = {",
+									"    url: 'http://localhost:3000/groups/',",
+									"    method: 'POST',",
+									"    header: 'Content-Type:application/json',",
+									"    body: {",
+									"        mode: 'application/json',",
+									"        raw: JSON.stringify({",
+									"             name: \"My group to delete\"",
+									"        })",
+									"    }",
+									"};",
+									"pm.sendRequest(createRequest, function (err, response) {",
+									"    console.log(response);",
+									"    const [data] = response.json();",
+									"    console.log(data.id);",
+									"    pm.environment.set('groupid', data.id);",
+									"});"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://localhost:3000/groups/{{groupid}}",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"groups",
+								"{{groupid}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Clean up groups",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "6415d3fb-fc99-409e-b53a-6e333dfcd734",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Data array is empty\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.length).to.eql(0);",
+									"});"
+								]
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "a30efa0f-31be-4514-b6de-37ba01a1a2b8",
+								"type": "text/javascript",
+								"exec": [
+									"pm.sendRequest('http://localhost:3000/groups', function (error, response) {",
+									"    console.log(response.json())",
+									"    response.json()",
+									"    .map(x => x.id)",
+									"    .forEach(id => {",
+									"        const deleteRequest = {",
+									"            url: 'http://localhost:3000/groups/' + id,",
+									"            method: 'DELETE'",
+									"        };",
+									"        pm.sendRequest(deleteRequest, function (err, res) {",
+									"            ",
+									"        });",
+									"    })",
+									"});"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://localhost:3000/groups",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"groups"
+							]
+						},
+						"description": "Delete all data"
+					},
+					"response": []
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "29461939-0bd0-41dd-9e13-04d0e42a3b65",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "26b5ffcb-b729-441f-aa5a-677b0f5917d7",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Users",
+			"item": [
+				{
+					"name": "Create",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "6f604ef1-f2cf-4263-b4be-f275d8ce55e6",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"Status code is 201\", function () {",
+									"    pm.response.to.have.status(201);",
+									"});"
+								]
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "c86ea6fd-2873-431c-b38f-7f14a2b69829",
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\": \"User name\",\n\t\"login\": \"userlogin\",\n\t\"email\": \"user@email.com\",\n\t\"password\": \"paswword\",\n\t\"confirmPassword\": \"paswword\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:3000/users",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create user with existing name",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "b5315287-6130-45df-9165-749397db3c00",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"Status code is 409\", function () {",
+									"    pm.response.to.have.status(409);",
+									"});",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\": \"User name\",\n\t\"login\": \"userlogin\",\n\t\"email\": \"user@email.com\",\n\t\"password\": \"paswword\",\n\t\"confirmPassword\": \"paswword\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:3000/users",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create user with existing email",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "b5315287-6130-45df-9165-749397db3c00",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"Status code is 409\", function () {",
+									"    pm.response.to.have.status(409);",
+									"});",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\": \"New user name\",\n\t\"login\": \"newuserlogin\",\n\t\"email\": \"user@email.com\",\n\t\"password\": \"paswword\",\n\t\"confirmPassword\": \"paswword\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:3000/users",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create user with existing login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "b5315287-6130-45df-9165-749397db3c00",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"Status code is 409\", function () {",
+									"    pm.response.to.have.status(409);",
+									"});",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\": \"New user name\",\n\t\"login\": \"userlogin\",\n\t\"email\": \"new-user@email.com\",\n\t\"password\": \"paswword\",\n\t\"confirmPassword\": \"paswword\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:3000/users",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create without name",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "10a3bbb1-a5ce-4340-b39f-35a2be103952",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"Status code is 400\", function () {",
+									"    pm.response.to.have.status(400);",
+									"});",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"full-name\": \"Ivan\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:3000/users",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create with short name",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "3518de74-5d64-4f08-9c6c-4822909f283e",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"Status code is 400\", function () {",
+									"    pm.response.to.have.status(400);",
+									"});",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\": \"Gr\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:3000/users",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get user by id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "0f66a7bc-aa61-42bc-82ca-56492b5ae9e1",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									""
+								]
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "bc654ab4-793d-4011-bcaa-b87caf801920",
+								"type": "text/javascript",
+								"exec": [
+									"const createRequest = {",
+									"    url: 'http://localhost:3000/users/',",
+									"    method: 'POST',",
+									"    header: 'Content-Type:application/json',",
+									"    body: {",
+									"        mode: 'application/json',",
+									"        raw: JSON.stringify({",
+									"            name: \"My user to get\",",
+									"            login: \"userlogintoget\",",
+									"            email: \"user@email-to-get.com\",",
+									"            password: \"paswword\",",
+									"            confirmPassword: \"paswword\"",
+									"        })",
+									"    }",
+									"};",
+									"pm.sendRequest(createRequest, function (err, response) {",
+									"    console.log(response);",
+									"    const [data] = response.json();",
+									"    console.log(data.id);",
+									"    pm.environment.set('userid', data.id);",
+									"});"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://localhost:3000/users/{{userid}}",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"users",
+								"{{userid}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get user by not exist id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "4a0a2c5b-02f6-4b85-8e17-e25d193b13dc",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"Status code is 404\", function () {",
+									"    pm.response.to.have.status(404);",
+									"});",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://localhost:3000/users/100500",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"users",
+								"100500"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "4bdb3bc1-eae6-43b9-93c3-19c20cebeed2",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									""
+								]
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "52d10c55-d608-4e81-9198-f7875af23069",
+								"type": "text/javascript",
+								"exec": [
+									"const createRequest = {",
+									"    url: 'http://localhost:3000/users/',",
+									"    method: 'POST',",
+									"    header: 'Content-Type:application/json',",
+									"    body: {",
+									"        mode: 'application/json',",
+									"        raw: JSON.stringify({",
+									"            name: \"My user to update1\",",
+									"            login: \"userlogintoupdate1\",",
+									"            email: \"user@email-to-update1.com\",",
+									"            password: \"paswword\",",
+									"            confirmPassword: \"paswword\"",
+									"        })",
+									"    }",
+									"};",
+									"pm.sendRequest(createRequest, function (err, response) {",
+									"    console.log(response);",
+									"    const [data] = response.json();",
+									"    console.log(data.id);",
+									"    pm.environment.set('userid', data.id);",
+									"});"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"New user to update1\",\n    \"login\": \"newuserlogintoupdate1\",\n    \"email\": \"newuser@email-to-update1.com\",\n    \"password\": \"newpaswword\",\n    \"confirmPassword\": \"newpaswword\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:3000/users/{{userid}}",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"users",
+								"{{userid}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update without password",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "4bdb3bc1-eae6-43b9-93c3-19c20cebeed2",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									""
+								]
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "676ac6b4-430f-4e60-a6c1-80792525efd3",
+								"type": "text/javascript",
+								"exec": [
+									"const createRequest = {",
+									"    url: 'http://localhost:3000/users/',",
+									"    method: 'POST',",
+									"    header: 'Content-Type:application/json',",
+									"    body: {",
+									"        mode: 'application/json',",
+									"        raw: JSON.stringify({",
+									"            name: \"My user to update2\",",
+									"            login: \"userlogintoupdate2\",",
+									"            email: \"user@email-to-update2.com\",",
+									"            password: \"paswword\",",
+									"            confirmPassword: \"paswword\"",
+									"        })",
+									"    }",
+									"};",
+									"pm.sendRequest(createRequest, function (err, response) {",
+									"    console.log(response);",
+									"    const [data] = response.json();",
+									"    console.log(data.id);",
+									"    pm.environment.set('userid', data.id);",
+									"});"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"New user to update2\",\n    \"login\": \"newuserlogintoupdate2\",\n    \"email\": \"newuser@email-to-update2.com\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:3000/users/{{userid}}",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"users",
+								"{{userid}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get all users",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "19e75e23-b6e4-4d87-9aa8-fc3c30c98ad5",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://localhost:3000/users",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "4c6ba94e-e087-4300-bbf6-77a3f70c9894",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"Status code is 204\", function () {",
+									"    pm.response.to.have.status(204);",
+									"});",
+									""
+								]
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "0d56b07e-794c-4e3a-b1ce-16d59bf3b663",
+								"type": "text/javascript",
+								"exec": [
+									"const createRequest = {",
+									"    url: 'http://localhost:3000/users/',",
+									"    method: 'POST',",
+									"    header: 'Content-Type:application/json',",
+									"    body: {",
+									"        mode: 'application/json',",
+									"        raw: JSON.stringify({",
+									"            name: \"My user to delete\",",
+									"            login: \"userlogintodelete\",",
+									"            email: \"user@email-to-delete.com\",",
+									"            password: \"paswword\",",
+									"            confirmPassword: \"paswword\"",
+									"        })",
+									"    }",
+									"};",
+									"pm.sendRequest(createRequest, function (err, response) {",
+									"    console.log(response);",
+									"    const [data] = response.json();",
+									"    console.log(data.id);",
+									"    pm.environment.set('userid', data.id);",
+									"});"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://localhost:3000/users/{{userid}}",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"users",
+								"{{userid}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Clean up users",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "6415d3fb-fc99-409e-b53a-6e333dfcd734",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Data array is empty\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.length).to.eql(0);",
+									"});"
+								]
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "98d475d0-c12c-4be3-80af-f0693b58435c",
+								"type": "text/javascript",
+								"exec": [
+									"pm.sendRequest('http://localhost:3000/users', function (error, response) {",
+									"    console.log(response.json())",
+									"    response.json()",
+									"    .map(x => x.id)",
+									"    .forEach(id => {",
+									"        const deleteRequest = {",
+									"            url: 'http://localhost:3000/users/' + id,",
+									"            method: 'DELETE'",
+									"        };",
+									"        pm.sendRequest(deleteRequest, function (err, res) {",
+									"            ",
+									"        });",
+									"    })",
+									"});"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://localhost:3000/users",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"users"
+							]
+						},
+						"description": "Delete all data"
+					},
+					"response": []
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "29461939-0bd0-41dd-9e13-04d0e42a3b65",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "26b5ffcb-b729-441f-aa5a-677b0f5917d7",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		}
+	]
+}
