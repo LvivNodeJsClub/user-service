@@ -8,6 +8,6 @@ knex.migrate.latest()
 
     require('runner');
 })
-.catch(function() {
-    console.error('Migration failed!');
+.catch(function(error) {
+    console.error(error);
 });
