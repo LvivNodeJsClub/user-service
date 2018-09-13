@@ -111,7 +111,7 @@ describe('UserRouter', function() {
             .expect('Content-Type', /json/)
             .expect(HttpStatus.BAD_REQUEST);
 
-            expect(response.body.error).equal('User name is required.');
+            expect(response.body.error).equal('"User name" is required');
 
             const users = await userRepository.getAll();
             expect(users).an('array');
@@ -125,7 +125,7 @@ describe('UserRouter', function() {
             .expect('Content-Type', /json/)
             .expect(HttpStatus.BAD_REQUEST);
 
-            expect(response.body.error).equal('User name 3 characters minimum.');
+            expect(response.body.error).equal('"User name" length must be at least 3 characters long');
 
             const users = await userRepository.getAll();
             expect(users).an('array');
@@ -235,7 +235,7 @@ describe('UserRouter', function() {
             .expect('Content-Type', /json/)
             .expect(HttpStatus.BAD_REQUEST);
 
-            expect(response.body.error).equal('User name is required.');
+            expect(response.body.error).equal('"User name" is required');
 
             const existing = await userRepository.get(user.id);
             expect(existing.name).equal('User name');
@@ -257,7 +257,7 @@ describe('UserRouter', function() {
             .expect('Content-Type', /json/)
             .expect(HttpStatus.BAD_REQUEST);
 
-            expect(response.body.error).equal('User name 3 characters minimum.');
+            expect(response.body.error).equal('"User name" length must be at least 3 characters long');
 
             const existing = await userRepository.get(user.id);
             expect(existing.name).equal('User name');

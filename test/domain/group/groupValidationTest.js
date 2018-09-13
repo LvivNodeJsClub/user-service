@@ -19,9 +19,6 @@ describe('GroupValidation', function() {
 
         it('should throw error without body', async function() {
             const request  = {
-                params: {
-                    id: 1
-                }
             };
             const response = {
                 status: sinon.fake(() => response),
@@ -30,16 +27,13 @@ describe('GroupValidation', function() {
             const next     = sinon.fake();
 
             const createValidatorPromise = groupValidation.createValidator(request, response, next);
-            await expect(createValidatorPromise).rejectedWith('Can not parse body.');
+            await expect(createValidatorPromise).rejectedWith('"body" is required');
 
             expect(next.calledOnce).equal(false);
         });
 
         it('should throw error without name', async function() {
             const request  = {
-                params: {
-                    id: 1
-                },
                 body:   {}
             };
             const response = {
@@ -49,16 +43,13 @@ describe('GroupValidation', function() {
             const next     = sinon.fake();
 
             const createValidatorPromise = groupValidation.createValidator(request, response, next);
-            await expect(createValidatorPromise).rejectedWith('Group name is required.');
+            await expect(createValidatorPromise).rejectedWith('"Group name" is required');
 
             expect(next.calledOnce).equal(false);
         });
 
         it('should throw error with short name', async function() {
             const request  = {
-                params: {
-                    id: 1
-                },
                 body:   {
                     name: 'Gr'
                 }
@@ -70,16 +61,13 @@ describe('GroupValidation', function() {
             const next     = sinon.fake();
 
             const createValidatorPromise = groupValidation.createValidator(request, response, next);
-            await expect(createValidatorPromise).rejectedWith('Group name 3 characters minimum.');
+            await expect(createValidatorPromise).rejectedWith('"Group name" length must be at least 3 characters long');
 
             expect(next.calledOnce).equal(false);
         });
 
         it('should call next', async function() {
             const request  = {
-                params: {
-                    id: 1
-                },
                 body:   {
                     name: 'Group name'
                 }
@@ -112,7 +100,7 @@ describe('GroupValidation', function() {
             const next     = sinon.fake();
 
             const createValidatorPromise = groupValidation.updateValidator(request, response, next);
-            await expect(createValidatorPromise).rejectedWith('Can not parse body.');
+            await expect(createValidatorPromise).rejectedWith('"body" is required');
 
             expect(next.calledOnce).equal(false);
         });
@@ -131,7 +119,7 @@ describe('GroupValidation', function() {
             const next     = sinon.fake();
 
             const createValidatorPromise = groupValidation.updateValidator(request, response, next);
-            await expect(createValidatorPromise).rejectedWith('Group name is required.');
+            await expect(createValidatorPromise).rejectedWith('"Group name" is required');
 
             expect(next.calledOnce).equal(false);
         });
@@ -152,7 +140,7 @@ describe('GroupValidation', function() {
             const next     = sinon.fake();
 
             const createValidatorPromise = groupValidation.updateValidator(request, response, next);
-            await expect(createValidatorPromise).rejectedWith('Group name 3 characters minimum.');
+            await expect(createValidatorPromise).rejectedWith('"Group name" length must be at least 3 characters long');
 
             expect(next.calledOnce).equal(false);
         });

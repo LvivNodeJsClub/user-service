@@ -101,7 +101,7 @@ describe('GroupRouter', function() {
             .expect('Content-Type', /json/)
             .expect(HttpStatus.BAD_REQUEST);
 
-            expect(response.body.error).equal('Group name is required.');
+            expect(response.body.error).equal('"Group name" is required');
 
             const groups = await groupRepository.getAll();
             expect(groups).an('array');
@@ -115,7 +115,7 @@ describe('GroupRouter', function() {
             .expect('Content-Type', /json/)
             .expect(HttpStatus.BAD_REQUEST);
 
-            expect(response.body.error).equal('Group name 3 characters minimum.');
+            expect(response.body.error).equal('"Group name" length must be at least 3 characters long');
 
             const groups = await groupRepository.getAll();
             expect(groups).an('array');
