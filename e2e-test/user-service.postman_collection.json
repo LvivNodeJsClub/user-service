@@ -47,12 +47,10 @@
 							"raw": "{\n\t\"name\": \"Group name\"\n}"
 						},
 						"url": {
-							"raw": "http://localhost:3000/groups",
-							"protocol": "http",
+							"raw": "{{url}}/groups",
 							"host": [
-								"localhost"
+								"{{url}}"
 							],
-							"port": "3000",
 							"path": [
 								"groups"
 							]
@@ -90,12 +88,10 @@
 							"raw": "{\n\t\"name\": \"Group name\"\n}"
 						},
 						"url": {
-							"raw": "http://localhost:3000/groups",
-							"protocol": "http",
+							"raw": "{{url}}/groups",
 							"host": [
-								"localhost"
+								"{{url}}"
 							],
-							"port": "3000",
 							"path": [
 								"groups"
 							]
@@ -133,12 +129,10 @@
 							"raw": "{\n\t\"name\": \"Admins\",\n\t\"admin\": true\n}"
 						},
 						"url": {
-							"raw": "http://localhost:3000/groups",
-							"protocol": "http",
+							"raw": "{{url}}/groups",
 							"host": [
-								"localhost"
+								"{{url}}"
 							],
-							"port": "3000",
 							"path": [
 								"groups"
 							]
@@ -176,12 +170,10 @@
 							"raw": "{\n\t\"full-name\": \"Ivan\"\n}"
 						},
 						"url": {
-							"raw": "http://localhost:3000/groups",
-							"protocol": "http",
+							"raw": "{{url}}/groups",
 							"host": [
-								"localhost"
+								"{{url}}"
 							],
-							"port": "3000",
 							"path": [
 								"groups"
 							]
@@ -219,12 +211,10 @@
 							"raw": "{\n\t\"name\": \"Gr\"\n}"
 						},
 						"url": {
-							"raw": "http://localhost:3000/groups",
-							"protocol": "http",
+							"raw": "{{url}}/groups",
 							"host": [
-								"localhost"
+								"{{url}}"
 							],
-							"port": "3000",
 							"path": [
 								"groups"
 							]
@@ -251,11 +241,13 @@
 						{
 							"listen": "prerequest",
 							"script": {
-								"id": "6487e392-0604-46ca-a0f6-211e2d108365",
+								"id": "f9eca82d-90c4-42f6-9fc9-1bc74da9f93f",
 								"type": "text/javascript",
 								"exec": [
+									"const url = pm.environment.get(\"url\");",
+									"",
 									"const createRequest = {",
-									"    url: 'http://localhost:3000/groups/',",
+									"    url: url + '/groups/',",
 									"    method: 'POST',",
 									"    header: 'Content-Type:application/json',",
 									"    body: {",
@@ -280,12 +272,10 @@
 						"header": [],
 						"body": {},
 						"url": {
-							"raw": "http://localhost:3000/groups/{{groupid}}",
-							"protocol": "http",
+							"raw": "{{url}}/groups/{{groupid}}",
 							"host": [
-								"localhost"
+								"{{url}}"
 							],
-							"port": "3000",
 							"path": [
 								"groups",
 								"{{groupid}}"
@@ -316,12 +306,10 @@
 						"header": [],
 						"body": {},
 						"url": {
-							"raw": "http://localhost:3000/groups/100500",
-							"protocol": "http",
+							"raw": "{{url}}/groups/100500",
 							"host": [
-								"localhost"
+								"{{url}}"
 							],
-							"port": "3000",
 							"path": [
 								"groups",
 								"100500"
@@ -349,11 +337,13 @@
 						{
 							"listen": "prerequest",
 							"script": {
-								"id": "8c5c0386-e523-47a9-a239-b2618f101b04",
+								"id": "cbf3e877-b44c-4a57-b874-6725e7cf73f6",
 								"type": "text/javascript",
 								"exec": [
+									"const url = pm.environment.get(\"url\");",
+									"",
 									"const createRequest = {",
-									"    url: 'http://localhost:3000/groups/',",
+									"    url: url + '/groups/',",
 									"    method: 'POST',",
 									"    header: 'Content-Type:application/json',",
 									"    body: {",
@@ -386,12 +376,10 @@
 							"raw": "{\n\t\"name\": \"Petro\"\n}"
 						},
 						"url": {
-							"raw": "http://localhost:3000/groups/{{groupid}}",
-							"protocol": "http",
+							"raw": "{{url}}/groups/{{groupid}}",
 							"host": [
-								"localhost"
+								"{{url}}"
 							],
-							"port": "3000",
 							"path": [
 								"groups",
 								"{{groupid}}"
@@ -418,16 +406,29 @@
 						}
 					],
 					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "1",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "1",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
 						"header": [],
 						"body": {},
 						"url": {
-							"raw": "http://localhost:3000/groups",
-							"protocol": "http",
+							"raw": "{{url}}/groups",
 							"host": [
-								"localhost"
+								"{{url}}"
 							],
-							"port": "3000",
 							"path": [
 								"groups"
 							]
@@ -454,11 +455,13 @@
 						{
 							"listen": "prerequest",
 							"script": {
-								"id": "cef5ad26-b7d8-4725-b7c1-06b5825be7bb",
+								"id": "26cfd86c-c088-49b4-bb37-9015291c22a1",
 								"type": "text/javascript",
 								"exec": [
+									"const url = pm.environment.get(\"url\");",
+									"",
 									"const createRequest = {",
-									"    url: 'http://localhost:3000/groups/',",
+									"    url: url + '/groups/',",
 									"    method: 'POST',",
 									"    header: 'Content-Type:application/json',",
 									"    body: {",
@@ -483,12 +486,10 @@
 						"header": [],
 						"body": {},
 						"url": {
-							"raw": "http://localhost:3000/groups/{{groupid}}",
-							"protocol": "http",
+							"raw": "{{url}}/groups/{{groupid}}",
 							"host": [
-								"localhost"
+								"{{url}}"
 							],
-							"port": "3000",
 							"path": [
 								"groups",
 								"{{groupid}}"
@@ -520,23 +521,26 @@
 						{
 							"listen": "prerequest",
 							"script": {
-								"id": "a30efa0f-31be-4514-b6de-37ba01a1a2b8",
+								"id": "4c738090-0939-41db-b59b-24b9084bd264",
 								"type": "text/javascript",
 								"exec": [
-									"pm.sendRequest('http://localhost:3000/groups', function (error, response) {",
+									"const url = pm.environment.get(\"url\");",
+									"",
+									"pm.sendRequest(url + '/groups', function (error, response) {",
 									"    console.log(response.json())",
 									"    response.json()",
 									"    .map(x => x.id)",
 									"    .forEach(id => {",
 									"        const deleteRequest = {",
-									"            url: 'http://localhost:3000/groups/' + id,",
+									"            url: url + '/groups/' + id,",
 									"            method: 'DELETE'",
 									"        };",
 									"        pm.sendRequest(deleteRequest, function (err, res) {",
 									"            ",
 									"        });",
 									"    })",
-									"});"
+									"});",
+									""
 								]
 							}
 						}
@@ -546,12 +550,10 @@
 						"header": [],
 						"body": {},
 						"url": {
-							"raw": "http://localhost:3000/groups",
-							"protocol": "http",
+							"raw": "{{url}}/groups",
 							"host": [
-								"localhost"
+								"{{url}}"
 							],
-							"port": "3000",
 							"path": [
 								"groups"
 							]
@@ -626,12 +628,10 @@
 							"raw": "{\n\t\"name\": \"User name\",\n\t\"login\": \"userlogin\",\n\t\"email\": \"user@email.com\",\n\t\"password\": \"paswword\",\n\t\"confirmPassword\": \"paswword\"\n}"
 						},
 						"url": {
-							"raw": "http://localhost:3000/users",
-							"protocol": "http",
+							"raw": "{{url}}/users",
 							"host": [
-								"localhost"
+								"{{url}}"
 							],
-							"port": "3000",
 							"path": [
 								"users"
 							]
@@ -669,12 +669,10 @@
 							"raw": "{\n\t\"name\": \"User name\",\n\t\"login\": \"userlogin\",\n\t\"email\": \"user@email.com\",\n\t\"password\": \"paswword\",\n\t\"confirmPassword\": \"paswword\"\n}"
 						},
 						"url": {
-							"raw": "http://localhost:3000/users",
-							"protocol": "http",
+							"raw": "{{url}}/users",
 							"host": [
-								"localhost"
+								"{{url}}"
 							],
-							"port": "3000",
 							"path": [
 								"users"
 							]
@@ -712,12 +710,10 @@
 							"raw": "{\n\t\"name\": \"New user name\",\n\t\"login\": \"newuserlogin\",\n\t\"email\": \"user@email.com\",\n\t\"password\": \"paswword\",\n\t\"confirmPassword\": \"paswword\"\n}"
 						},
 						"url": {
-							"raw": "http://localhost:3000/users",
-							"protocol": "http",
+							"raw": "{{url}}/users",
 							"host": [
-								"localhost"
+								"{{url}}"
 							],
-							"port": "3000",
 							"path": [
 								"users"
 							]
@@ -755,12 +751,10 @@
 							"raw": "{\n\t\"name\": \"New user name\",\n\t\"login\": \"userlogin\",\n\t\"email\": \"new-user@email.com\",\n\t\"password\": \"paswword\",\n\t\"confirmPassword\": \"paswword\"\n}"
 						},
 						"url": {
-							"raw": "http://localhost:3000/users",
-							"protocol": "http",
+							"raw": "{{url}}/users",
 							"host": [
-								"localhost"
+								"{{url}}"
 							],
-							"port": "3000",
 							"path": [
 								"users"
 							]
@@ -798,12 +792,10 @@
 							"raw": "{\n\t\"full-name\": \"Ivan\"\n}"
 						},
 						"url": {
-							"raw": "http://localhost:3000/users",
-							"protocol": "http",
+							"raw": "{{url}}/users",
 							"host": [
-								"localhost"
+								"{{url}}"
 							],
-							"port": "3000",
 							"path": [
 								"users"
 							]
@@ -841,12 +833,10 @@
 							"raw": "{\n\t\"name\": \"Gr\"\n}"
 						},
 						"url": {
-							"raw": "http://localhost:3000/users",
-							"protocol": "http",
+							"raw": "{{url}}/users",
 							"host": [
-								"localhost"
+								"{{url}}"
 							],
-							"port": "3000",
 							"path": [
 								"users"
 							]
@@ -873,11 +863,13 @@
 						{
 							"listen": "prerequest",
 							"script": {
-								"id": "bc654ab4-793d-4011-bcaa-b87caf801920",
+								"id": "5eb1461a-ba0e-4a50-b515-85d6dda00819",
 								"type": "text/javascript",
 								"exec": [
+									"const url = pm.environment.get(\"url\");",
+									"",
 									"const createRequest = {",
-									"    url: 'http://localhost:3000/users/',",
+									"    url: url + '/users/',",
 									"    method: 'POST',",
 									"    header: 'Content-Type:application/json',",
 									"    body: {",
@@ -906,12 +898,10 @@
 						"header": [],
 						"body": {},
 						"url": {
-							"raw": "http://localhost:3000/users/{{userid}}",
-							"protocol": "http",
+							"raw": "{{url}}/users/{{userid}}",
 							"host": [
-								"localhost"
+								"{{url}}"
 							],
-							"port": "3000",
 							"path": [
 								"users",
 								"{{userid}}"
@@ -942,12 +932,10 @@
 						"header": [],
 						"body": {},
 						"url": {
-							"raw": "http://localhost:3000/users/100500",
-							"protocol": "http",
+							"raw": "{{url}}/users/100500",
 							"host": [
-								"localhost"
+								"{{url}}"
 							],
-							"port": "3000",
 							"path": [
 								"users",
 								"100500"
@@ -975,11 +963,13 @@
 						{
 							"listen": "prerequest",
 							"script": {
-								"id": "52d10c55-d608-4e81-9198-f7875af23069",
+								"id": "54ac941f-3723-4e4a-a1db-ad207b06046c",
 								"type": "text/javascript",
 								"exec": [
+									"const url = pm.environment.get(\"url\");",
+									"",
 									"const createRequest = {",
-									"    url: 'http://localhost:3000/users/',",
+									"    url: url + '/users/',",
 									"    method: 'POST',",
 									"    header: 'Content-Type:application/json',",
 									"    body: {",
@@ -1016,12 +1006,10 @@
 							"raw": "{\n    \"name\": \"New user to update1\",\n    \"login\": \"newuserlogintoupdate1\",\n    \"email\": \"newuser@email-to-update1.com\",\n    \"password\": \"newpaswword\",\n    \"confirmPassword\": \"newpaswword\"\n}"
 						},
 						"url": {
-							"raw": "http://localhost:3000/users/{{userid}}",
-							"protocol": "http",
+							"raw": "{{url}}/users/{{userid}}",
 							"host": [
-								"localhost"
+								"{{url}}"
 							],
-							"port": "3000",
 							"path": [
 								"users",
 								"{{userid}}"
@@ -1049,11 +1037,13 @@
 						{
 							"listen": "prerequest",
 							"script": {
-								"id": "676ac6b4-430f-4e60-a6c1-80792525efd3",
+								"id": "f641f024-fcbd-4070-b3c2-105aa6e43771",
 								"type": "text/javascript",
 								"exec": [
+									"const url = pm.environment.get(\"url\");",
+									"",
 									"const createRequest = {",
-									"    url: 'http://localhost:3000/users/',",
+									"    url: url + '/users/',",
 									"    method: 'POST',",
 									"    header: 'Content-Type:application/json',",
 									"    body: {",
@@ -1090,12 +1080,10 @@
 							"raw": "{\n    \"name\": \"New user to update2\",\n    \"login\": \"newuserlogintoupdate2\",\n    \"email\": \"newuser@email-to-update2.com\"\n}"
 						},
 						"url": {
-							"raw": "http://localhost:3000/users/{{userid}}",
-							"protocol": "http",
+							"raw": "{{url}}/users/{{userid}}",
 							"host": [
-								"localhost"
+								"{{url}}"
 							],
-							"port": "3000",
 							"path": [
 								"users",
 								"{{userid}}"
@@ -1126,12 +1114,10 @@
 						"header": [],
 						"body": {},
 						"url": {
-							"raw": "http://localhost:3000/users",
-							"protocol": "http",
+							"raw": "{{url}}/users",
 							"host": [
-								"localhost"
+								"{{url}}"
 							],
-							"port": "3000",
 							"path": [
 								"users"
 							]
@@ -1158,11 +1144,13 @@
 						{
 							"listen": "prerequest",
 							"script": {
-								"id": "0d56b07e-794c-4e3a-b1ce-16d59bf3b663",
+								"id": "5242aad7-d54a-4544-9e1b-11fb7cd9bdef",
 								"type": "text/javascript",
 								"exec": [
+									"const url = pm.environment.get(\"url\");",
+									"",
 									"const createRequest = {",
-									"    url: 'http://localhost:3000/users/',",
+									"    url: url + '/users/',",
 									"    method: 'POST',",
 									"    header: 'Content-Type:application/json',",
 									"    body: {",
@@ -1191,12 +1179,10 @@
 						"header": [],
 						"body": {},
 						"url": {
-							"raw": "http://localhost:3000/users/{{userid}}",
-							"protocol": "http",
+							"raw": "{{url}}/users/{{userid}}",
 							"host": [
-								"localhost"
+								"{{url}}"
 							],
-							"port": "3000",
 							"path": [
 								"users",
 								"{{userid}}"
@@ -1228,16 +1214,18 @@
 						{
 							"listen": "prerequest",
 							"script": {
-								"id": "98d475d0-c12c-4be3-80af-f0693b58435c",
+								"id": "1af6a04a-6444-4f91-8a70-162f668853fc",
 								"type": "text/javascript",
 								"exec": [
-									"pm.sendRequest('http://localhost:3000/users', function (error, response) {",
+									"const url = pm.environment.get(\"url\");",
+									"",
+									"pm.sendRequest(url + '/users', function (error, response) {",
 									"    console.log(response.json())",
 									"    response.json()",
 									"    .map(x => x.id)",
 									"    .forEach(id => {",
 									"        const deleteRequest = {",
-									"            url: 'http://localhost:3000/users/' + id,",
+									"            url: url + '/users/' + id,",
 									"            method: 'DELETE'",
 									"        };",
 									"        pm.sendRequest(deleteRequest, function (err, res) {",
@@ -1254,12 +1242,10 @@
 						"header": [],
 						"body": {},
 						"url": {
-							"raw": "http://localhost:3000/users",
-							"protocol": "http",
+							"raw": "{{url}}/users",
 							"host": [
-								"localhost"
+								"{{url}}"
 							],
-							"port": "3000",
 							"path": [
 								"users"
 							]
