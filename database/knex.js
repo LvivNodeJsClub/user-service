@@ -1,4 +1,4 @@
-const setting     = require('setting');
+const setting     = require('app/setting');
 const environment = setting.ENVIRONMENT;
 const config      = require('database/config')[environment];
 

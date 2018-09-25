@@ -1,4 +1,4 @@
-const setting = require('setting');
+const setting = require('app/setting');
 
 module.exports = {
     test:        {

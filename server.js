@@ -11,7 +11,7 @@ knex.migrate.latest()
 .then(function() {
     console.log('Migration done!');
 
-    require('runner');
+    require('app/runner');
 })
 .catch(function(error) {
     console.error(error);
