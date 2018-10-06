@@ -1,29 +1,33 @@
+import Knex = require("knex");
+
 const USERS = 'Users';
 const FIELD = ['id', 'name', 'login', 'email'];
 
-class UserRepository {
+interface User {
+}
 
-    constructor(knex) {
-        this.knex = knex;
+export class UserRepository {
+
+    constructor(private knex: Knex) {
     }
 
     getAll() {
         return this.knex.select(FIELD).from(USERS);
     }
 
-    get(id) {
+    get(id: number) {
         return this.knex.first(FIELD).from(USERS).where({id});
     }
 
-    create(user) {
+    create(user: User) {
         return this.knex.insert(user, FIELD).into(USERS);
     }
 
-    update(id, user) {
+    update(id: number, user: User) {
         return this.knex.update(user, FIELD).into(USERS).where({id});
     }
 
-    delete(id) {
+    delete(id: number) {
         return this.knex.delete().from(USERS).where({id: +id});
     }
 
