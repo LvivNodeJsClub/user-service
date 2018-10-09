@@ -1,7 +1,7 @@
 {
   "name": "user-service",
   "version": "1.0.0",
-  "description": "Play with passportjs",
+  "description": "User service",
   "main": "server.js",
   "scripts": {
     "build": "npm run build-ts",
@@ -17,16 +17,16 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/LvivNodeJsClub/passport.git"
+    "url": "git+https://github.com/LvivNodeJsClub/user-service.git"
   },
   "keywords": [
-    "passport",
+    "user",
     "node"
   ],
   "bugs": {
-    "url": "https://github.com/LvivNodeJsClub/passport/issues"
+    "url": "https://github.com/LvivNodeJsClub/user-service/issues"
   },
-  "homepage": "https://github.com/LvivNodeJsClub/passport#readme",
+  "homepage": "https://github.com/LvivNodeJsClub/user-service#readme",
   "dependencies": {
     "body-parser": "^1.18.3",
     "dotenv": "^6.0.0",
