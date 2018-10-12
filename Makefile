@@ -12,6 +12,7 @@ COMPOSE := docker-compose -f docker-compose.yml
 install:
 	@echo "--- Installing dependencies."
 	npm install
+	npm run build
 
 .PHONY: build
 build:
