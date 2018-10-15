@@ -1,13 +1,12 @@
-import {UserRepository} from "./userRepository";
-
-const NotFoundError = require('app/error/notFoundError');
+import UserRepository from "./userRepository";
+import NotFoundError from "../../error/notFoundError";
 
 interface UserDto {
     id: number;
     confirmPassword: number;
 }
 
-export class UserService {
+export default class UserService {
 
     constructor(private userRepository: UserRepository) {
     }

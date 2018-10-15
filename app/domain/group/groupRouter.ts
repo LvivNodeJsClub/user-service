@@ -1,16 +1,17 @@
-import UserValidation from "./userValidation";
-import UserController from "./userController";
+import {NextFunction, Request, Response} from "express";
+import GroupValidation from "./groupValidation";
+import GroupController from "./groupController";
 
 const wrapAsync = require('app/util/wrapAsync');
 
 const express = require('express');
-import {Request, Response, NextFunction} from "express"
 
-export default class UserRouter extends express.Router {
+export default class GroupRouter extends express.Router {
 
-    constructor(userValidation: UserValidation, userController: UserController) {
+    constructor(userValidation: GroupValidation, userController: GroupController) {
         super();
 
+        //FIXME see baind
         const createUserValidator = wrapAsync((request: Request, response: Response, next: NextFunction) => userValidation.createValidator(request, response, next));
         const updateUserValidator = wrapAsync((request: Request, response: Response, next: NextFunction) => userValidation.updateValidator(request, response, next));
 
@@ -28,4 +29,4 @@ export default class UserRouter extends express.Router {
     }
 }
 
-module.exports = UserRouter;
+module.exports = GroupRouter;

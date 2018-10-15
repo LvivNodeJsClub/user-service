@@ -1,31 +1,33 @@
+import GroupService from "./groupService";
+import {Request, Response} from "express";
+
 const HttpStatus = require('http-status-codes');
 
-class GroupController {
-    constructor(groupService) {
-        this.groupService = groupService
+export default class GroupController {
+    constructor(private groupService: GroupService) {
     }
 
-    async getAll(request, response) {
+    async getAll(request: Request, response: Response) {
         const users = await this.groupService.getAll();
         response.status(HttpStatus.OK).json(users);
     }
 
-    async get(request, response) {
+    async get(request: Request, response: Response) {
         const user = await this.groupService.get(request.params.id);
         response.status(HttpStatus.OK).json(user);
     }
 
-    async create(request, response) {
+    async create(request: Request, response: Response) {
         const user = await this.groupService.create(request.body);
         response.status(HttpStatus.CREATED).json(user);
     }
 
-    async update(request, response) {
+    async update(request: Request, response: Response) {
         const user = await this.groupService.update(request.params.id, request.body);
         response.status(HttpStatus.OK).json(user);
     }
 
-    async delete(request, response) {
+    async delete(request: Request, response: Response) {
         await this.groupService.delete(request.params.id);
         response.sendStatus(HttpStatus.NO_CONTENT);
     }

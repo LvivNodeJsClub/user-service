@@ -1,6 +1,8 @@
+import {SchemaLike} from "joi";
+
 const Joi = require('joi');
 
-module.exports = function(body, schema, Error) {
+const joiValidate = function (body: any, schema: SchemaLike, Error: any) {
     const {error, value} = Joi.validate(body, schema);
 
     if (error) {
@@ -9,3 +11,5 @@ module.exports = function(body, schema, Error) {
     }
     return value;
 };
+export default joiValidate;
+module.exports = joiValidate;

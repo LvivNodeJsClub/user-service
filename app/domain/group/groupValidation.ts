@@ -1,9 +1,10 @@
 import {NextFunction, Request, Response} from "express";
-import {create, update} from "./userSchema";
+import {create, update} from "./groupSchema";
 import joiValidate from "../../util/joiValidate";
+
 import BedRequestError from "../../error/badRequestError";
 
-export default class UserValidation {
+export default class GroupValidation {
 
     async createValidator(request: Request, response: Response, next: NextFunction) {
         await joiValidate(request.body, create, BedRequestError);
@@ -18,4 +19,4 @@ export default class UserValidation {
     }
 }
 
-module.exports = UserValidation;
+module.exports = GroupValidation;

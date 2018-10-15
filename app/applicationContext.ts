@@ -1,16 +1,19 @@
+import UserController from "./domain/user/userController";
+import UserValidation from "./domain/user/userValidation";
+import GroupController from "./domain/group/groupController";
+import GroupValidation from "./domain/group/groupValidation";
+import UserRepository from "./domain/user/userRepository";
+import UserService from "./domain/user/userService";
+import GroupRepository from "./domain/group/groupRepository";
+import GroupService from "./domain/group/groupService";
+
 const knex = require('../database/knex');
 
-const UserRepository = require('app/domain/user/userRepository');
-const UserService    = require('app/domain/user/userService');
-const UserController = require('app/domain/user/userController');
-const UserValidation = require('app/domain/user/userValidation');
-
-const GroupRepository = require('app/domain/group/groupRepository');
-const GroupService    = require('app/domain/group/groupService');
-const GroupController = require('app/domain/group/groupController');
-const GroupValidation = require('app/domain/group/groupValidation');
-
-class ApplicationContext {
+export default class ApplicationContext {
+    public userController: UserController;
+    public userValidation: UserValidation;
+    public groupController: GroupController;
+    public groupValidation: GroupValidation;
 
     constructor() {
         const userRepository = new UserRepository(knex);

@@ -6,7 +6,7 @@ const FIELD = ['id', 'name', 'login', 'email'];
 interface User {
 }
 
-export class UserRepository {
+export default class UserRepository {
 
     constructor(private knex: Knex) {
     }

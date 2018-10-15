@@ -1,10 +1,10 @@
-import {UserService} from "./userService";
+import UserService from "./userService";
 
 const HttpStatus = require('http-status-codes');
 
 import {Request, Response} from "express"
 
-export class UserController {
+export default class UserController {
 
     constructor(private userService: UserService) {
     }
