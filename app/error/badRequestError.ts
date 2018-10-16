@@ -1,8 +1,9 @@
 const HttpStatus = require('http-status-codes');
 
-class BadRequestError extends Error {
+export default class BadRequestError extends Error {
+    public status: number;
 
-    constructor(message) {
+    constructor(message: string) {
         super(message);
         this.status = HttpStatus.BAD_REQUEST;
     }

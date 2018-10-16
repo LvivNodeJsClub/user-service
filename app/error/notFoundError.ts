@@ -1,8 +1,9 @@
 const HttpStatus = require('http-status-codes');
 
-class NotFoundError extends Error {
+export default class NotFoundError extends Error {
+    public status: number;
 
-    constructor(message) {
+    constructor(message:string) {
         super(message);
         this.status = HttpStatus.NOT_FOUND;
     }
