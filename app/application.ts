@@ -16,4 +16,5 @@ express.use('/users', userRouter);
 express.use('/groups', groupRouter);
 express.use(errorHandler);
 
+export default express;
 module.exports = express;

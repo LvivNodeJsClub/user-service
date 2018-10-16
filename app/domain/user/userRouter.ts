@@ -1,10 +1,10 @@
 import UserValidation from "./userValidation";
 import UserController from "./userController";
 
-const wrapAsync = require('app/util/wrapAsync');
-
 const express = require('express');
 import {Request, Response, NextFunction} from "express"
+
+import wrapAsync from "../../util/wrapAsync";
 
 export default class UserRouter extends express.Router {
 

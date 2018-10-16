@@ -3,7 +3,7 @@ const env = process.env.NODE_ENV || 'development';
 require('dotenv').load({path: `.env.${env}`});
 // FIXME see config
 
-module.exports = {
+const setting = {
     ENVIRONMENT: env,
 
     PORT:        process.env.PORT || 3000,
@@ -15,3 +15,6 @@ module.exports = {
     DB_NAME:     process.env.DB_NAME || 'user-service',
 
 };
+
+export default setting;
+module.exports = setting;

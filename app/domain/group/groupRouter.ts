@@ -2,7 +2,7 @@ import {NextFunction, Request, Response} from "express";
 import GroupValidation from "./groupValidation";
 import GroupController from "./groupController";
 
-const wrapAsync = require('app/util/wrapAsync');
+import wrapAsync from "../../util/wrapAsync";
 
 const express = require('express');
 

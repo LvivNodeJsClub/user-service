@@ -1,6 +1,6 @@
 import GroupRepository from "./groupRepository";
 
-const NotFoundError = require('app/error/notFoundError');
+import NotFoundError from "../../error/notFoundError";
 
 interface GroupDto {
     id: number;
